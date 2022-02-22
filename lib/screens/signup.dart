@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rexora1/screens/phone.dart';
 import 'package:rexora1/screens/signin.dart';
 
 class SignUp extends StatelessWidget {
@@ -8,6 +9,7 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -50,7 +52,10 @@ icon: Icon(Icons.phone, size: 24,color: Color(0xff171B72),),
     fontSize: 16
 
   ),),
-  onPressed: (){},
+  onPressed: (){
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const Phone()));
+  },
 
 style: ElevatedButton.styleFrom(
   elevation: 2,

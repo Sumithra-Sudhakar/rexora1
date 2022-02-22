@@ -32,6 +32,8 @@ dependencies:
 
   google_fonts: ^1.1.1
 
+  flutter_otp_text_field: ^1.0.0
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -41,6 +43,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^2.0.1+1
+
+flutter_native_splash:
+  color: "#ffffffff"
+  image: assets/intro_bg.png
 
 
   # The "flutter_lints" package below contains a set of recommended lints to

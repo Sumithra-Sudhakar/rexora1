@@ -2,12 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rexora1/screens/signup.dart';
 
-class Home extends StatelessWidget {
+import 'dart:async';
+
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 5),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                SignUp()
+            )
+        )
+    );
+  }
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       body: Container(
         alignment: Alignment.bottomCenter,
         constraints: BoxConstraints.expand(),
@@ -29,3 +47,4 @@ class Home extends StatelessWidget {
     );
   }
 }
+
