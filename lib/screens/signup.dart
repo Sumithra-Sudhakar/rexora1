@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rexora1/screens/phone.dart';
 import 'package:rexora1/screens/signin.dart';
 
@@ -7,7 +9,7 @@ class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
 
       body: Container(
@@ -101,7 +103,9 @@ style: ElevatedButton.styleFrom(
             fontSize: 16
 
         ),),
-        onPressed: (){},
+        onPressed: (){
+          GoogleSignIn().signIn();
+        },
 
         style: ElevatedButton.styleFrom(
             elevation: 2,

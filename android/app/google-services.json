@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1004677833706",
+    "project_id": "rexora-app1",
+    "storage_bucket": "rexora-app1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004677833706:android:6f1c32d638532b19b9c893",
+        "android_client_info": {
+          "package_name": "com.example.rexora1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004677833706-jlkbfch7ma8bmd91gk1k47h5kel4ubsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUvsNd73srnJuigoNBGmdixiM-d_4HHy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004677833706-jlkbfch7ma8bmd91gk1k47h5kel4ubsb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

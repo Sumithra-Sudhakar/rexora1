@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rexora1/screens/otp.dart';
 
-class Phone extends StatelessWidget {
+class Phone extends StatefulWidget {
   const Phone({Key? key}) : super(key: key);
 
   @override
+  _PhoneState createState() => _PhoneState();
+}
+
+class _PhoneState extends State<Phone> {
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
         title: Text("Enter your Phone number"),
       ),
@@ -31,54 +38,81 @@ class Phone extends StatelessWidget {
             ),
             Expanded(
               child: Padding(padding: EdgeInsets.fromLTRB(10, 40, 10, 10),
-              child: ListView(
-                children: [TextFormField(
-                  style: GoogleFonts.montserrat(color: Colors.white),
-                  decoration: InputDecoration(
+                child: ListView(
+                    children: [TextFormField(
+                      controller: _phoneNumberController,
+                      style: GoogleFonts.montserrat(color: Colors.white),
+                      decoration: InputDecoration(
 
-                      filled: true,
-                      fillColor: Color(0xff424894),
-                      hintText: "Enter your phone number",
-                      hintStyle: GoogleFonts.poppins(
-                        color: Colors.white.withOpacity(0.7),
+                          filled: true,
+                          fillColor: Color(0xff424894),
+                          hintText: "Enter your phone number",
+                          hintStyle: GoogleFonts.poppins(
+                            color: Colors.white.withOpacity(0.7),
 
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(5.0),
 
-                      )
-                  ),
-                ),
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: ElevatedButton(
-
-
-                      child: Text("Continue", style: GoogleFonts.montserrat(
-                          color: Color(0xff171B72),
-                          fontSize: 16
-
-                      ),),
-                      onPressed: (){
-
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const OTP()));
-                      },
-
-                      style: ElevatedButton.styleFrom(
-                          elevation: 2,
-                          padding: EdgeInsets.all( 10.0),
-                          primary: Colors.white,
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(2.0)
                           )
                       ),
-
                     ),
-                  ),
-                ]
-              ),),
+                      TextFormField(
+                        controller: _passwordController,
+                        style: GoogleFonts.montserrat(color: Colors.white),
+                        decoration: InputDecoration(
+
+                            filled: true,
+                            fillColor: Color(0xff424894),
+                            hintText: "Enter your password",
+                            hintStyle: GoogleFonts.poppins(
+                              color: Colors.white.withOpacity(0.7),
+
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(5.0),
+
+                            )
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: ElevatedButton(
+
+
+                          child: Text("Continue", style: GoogleFonts.montserrat(
+                              color: Color(0xff171B72),
+                              fontSize: 16
+
+                          ),),
+                          onPressed: (){
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => OTP(
+                                        phoneNumber:
+                                        _phoneNumberController.text,
+                                        password:
+                                        _passwordController.text,
+                                         )));
+                          },
+
+                          style: ElevatedButton.styleFrom(
+                              elevation: 2,
+                              padding: EdgeInsets.all( 10.0),
+                              primary: Colors.white,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(2.0)
+                              )
+                          ),
+
+                        ),
+                      ),
+                    ]
+                ),),
             ),
 
 

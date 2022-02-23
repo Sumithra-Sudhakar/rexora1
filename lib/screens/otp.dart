@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,15 +8,59 @@ import 'home.dart';
 
 
 class OTP extends StatefulWidget {
-  const OTP({Key? key}) : super(key: key);
+  const OTP(
+      {Key? key,
+        required this.phoneNumber,
+        required this.password,
+        })
+      : super(key: key);
+  final String phoneNumber;
+  final String password;
 
   @override
   _OTPState createState() => _OTPState();
 }
 
 class _OTPState extends State<OTP> {
+  final TextEditingController _otpController = TextEditingController();
+  String verificationId = "";
+  @override
+  // void initState() {
+  //   super.initState();
+  //   asyncMethod();
+  // }
+  //
+  // void asyncMethod() async {
+  //   await _generateOTP();
+  //
+  // }
+  _generateOTP() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: '+91 ${widget.phoneNumber}',
+      verificationCompleted: (PhoneAuthCredential credential) {
+        print("COMPLETE");
+        print("verification completed ${credential.smsCode}");
+        User? user = FirebaseAuth.instance.currentUser;
+
+        print(user.phoneNumber);
+        print(user.getIdToken());
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        if (e.code == 'invalid-phone-number') {
+          print("The phone number entered is invalid!");
+        }
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        this.verificationId = verificationId;
+        print(resendToken);
+        print("code sent");
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
   @override
   Widget build(BuildContext context) {
+    _generateOTP();
     return Scaffold(
       appBar: AppBar(title:Text("Enter the otp for verification")),
       body: Container(
@@ -28,24 +73,48 @@ class _OTPState extends State<OTP> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            OtpTextField(
-              numberOfFields: 5,
-              borderColor: Color(0xFF512DA8),
-              //set to true to show as box or false to show as dash
-              showFieldAsBox: true,
-              //runs when a code is typed in
-              onCodeChanged: (String code) {
-                //handle validation or checks here
-              },
-              //runs when every textfield is filled
-              onSubmit: (String verificationCode){
-
-
-              },
-
-              // end onSubmit
-            ),
-
+            // OtpTextField(
+            //
+            //
+            //   numberOfFields: 5,
+            //
+            //   borderColor: Color(0xFF512DA8),
+            //   //set to true to show as box or false to show as dash
+            //   showFieldAsBox: true,
+            //   //runs when a code is typed in
+            //   onCodeChanged: (String code) {
+            //     //handle validation or checks here
+            //   },
+            //   //runs when every textfield is filled
+            //   onSubmit: (String verificationCode){
+            //
+            //
+            //   },
+            //
+            //   // end onSubmit
+            // ),
+            TextFormField(
+                controller: _otpController,
+                style: GoogleFonts.montserrat(color:Colors.white),
+                decoration: InputDecoration(
+                  label: Text(
+                    'OTP',
+                    style: GoogleFonts.raleway(
+                        color: Colors.white, fontSize: 12),
+                  ),
+                  filled: true,
+                  hintText: 'Please enter your OTP',
+                  hintStyle: GoogleFonts.poppins(
+                      color: Colors.grey.withOpacity(0.7)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(5)),
+                  fillColor: Color(0xff424894),
+                //  focusColor: colors.textBoxFill,
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(5)),
+                )),
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: ElevatedButton(
@@ -56,12 +125,45 @@ class _OTPState extends State<OTP> {
                     fontSize: 16
 
                 ),),
-                onPressed: (){
-
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Home()));
+                onPressed: () async {
+                  await FirebaseAuth.instance
+                      .signInWithCredential(PhoneAuthProvider.credential(
+                      verificationId: verificationId,
+                      smsCode: _otpController.text))
+                      .then((value) async {
+                    if (value.user != null) {
+                      print(widget.phoneNumber);
+                      print(await value.user!.getIdToken());
+                      //TODO: use this token to login
+                    }
+                  });
                 },
+                style: ElevatedButton.styleFrom(
+                    elevation: 2,
+                    padding: EdgeInsets.all( 10.0),
+                    primary: Colors.white,
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(2.0)
+                    )
+                ),
 
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: ElevatedButton(
+
+
+                child: Text("Geberate", style: GoogleFonts.montserrat(
+                    color: Color(0xff171B72),
+                    fontSize: 16
+
+                ),),
+                onPressed: () {
+                  print(widget.phoneNumber);
+                  _generateOTP();
+                },
                 style: ElevatedButton.styleFrom(
                     elevation: 2,
                     padding: EdgeInsets.all( 10.0),
