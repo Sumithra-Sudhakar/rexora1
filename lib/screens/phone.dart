@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rexora1/screens/otp.dart';
@@ -10,12 +11,16 @@ class Phone extends StatefulWidget {
 }
 
 class _PhoneState extends State<Phone> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  //String _verificationId;
+  //final SmsAutoFill _autoFill = SmsAutoFill();
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF4A5BB6),
         title: Text("Enter your Phone number"),
       ),
       body: Container(
@@ -32,12 +37,12 @@ class _PhoneState extends State<Phone> {
             Expanded(
 
                 child:Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
                   child:  Image.asset("assets/phone.png"),
                 )
             ),
             Expanded(
-              child: Padding(padding: EdgeInsets.fromLTRB(10, 40, 10, 10),
+              child: Padding(padding: EdgeInsets.fromLTRB(15, 40, 15, 15),
                 child: ListView(
                     children: [TextFormField(
                       controller: _phoneNumberController,
@@ -58,23 +63,27 @@ class _PhoneState extends State<Phone> {
                           )
                       ),
                     ),
-                      TextFormField(
-                        controller: _passwordController,
-                        style: GoogleFonts.montserrat(color: Colors.white),
-                        decoration: InputDecoration(
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: TextFormField(
+                          controller: _passwordController,
 
-                            filled: true,
-                            fillColor: Color(0xff424894),
-                            hintText: "Enter your password",
-                            hintStyle: GoogleFonts.poppins(
-                              color: Colors.white.withOpacity(0.7),
+                          style: GoogleFonts.montserrat(color: Colors.white),
+                          decoration: InputDecoration(
 
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(5.0),
+                              filled: true,
+                              fillColor: Color(0xff424894),
+                              hintText: "Enter your password",
+                              hintStyle: GoogleFonts.poppins(
+                                color: Colors.white.withOpacity(0.7),
 
-                            )
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(5.0),
+
+                              )
+                          ),
                         ),
                       ),
                       Padding(

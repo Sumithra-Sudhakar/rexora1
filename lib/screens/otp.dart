@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:rexora1/screens/birthday.dart';
 
 import 'home.dart';
 
@@ -36,7 +37,7 @@ class _OTPState extends State<OTP> {
   // }
   _generateOTP() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+91 ${widget.phoneNumber}',
+      phoneNumber: '+91${widget.phoneNumber}',
       verificationCompleted: (PhoneAuthCredential credential) {
         print("COMPLETE");
         print("verification completed ${credential.smsCode}");
@@ -125,19 +126,10 @@ class _OTPState extends State<OTP> {
                     fontSize: 16
 
                 ),),
-                onPressed: () async {
-                  await FirebaseAuth.instance
-                      .signInWithCredential(PhoneAuthProvider.credential(
-                      verificationId: verificationId,
-                      smsCode: _otpController.text))
-                      .then((value) async {
-                    if (value.user != null) {
-                      print(widget.phoneNumber);
-                      print(await value.user!.getIdToken());
-                      //TODO: use this token to login
-                    }
-                  });
-                },
+                onPressed: ()  {
+    Navigator.push(context,
+    MaterialPageRoute(builder: (context) => const Birthday()));
+    },
                 style: ElevatedButton.styleFrom(
                     elevation: 2,
                     padding: EdgeInsets.all( 10.0),
@@ -155,7 +147,7 @@ class _OTPState extends State<OTP> {
               child: ElevatedButton(
 
 
-                child: Text("Geberate", style: GoogleFonts.montserrat(
+                child: Text("Generate", style: GoogleFonts.montserrat(
                     color: Color(0xff171B72),
                     fontSize: 16
 

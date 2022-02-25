@@ -38,13 +38,14 @@ class SignUp extends StatelessWidget {
   children: [
     Align(
       alignment: Alignment.topCenter,
-      child: Text("Sign Up",
+      child: Text("Aye Date!",
       style:  GoogleFonts.montserrat(color: Colors.white,
-        fontSize: 48,
+        fontSize: 38,
         fontWeight: FontWeight.w400
           ),),
     ),
-Padding(padding: EdgeInsets.fromLTRB(20, 90, 20, 20),
+
+Padding(padding: EdgeInsets.fromLTRB(30, 90, 30, 20),
 
 child: ElevatedButton.icon(
 
@@ -70,7 +71,7 @@ style: ElevatedButton.styleFrom(
 
 ),),
 
-    Padding(padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+    Padding(padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
 
       child: ElevatedButton.icon(
 
@@ -93,7 +94,7 @@ style: ElevatedButton.styleFrom(
 
       ),),
 
-    Padding(padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+    Padding(padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
 
       child: ElevatedButton.icon(
 
