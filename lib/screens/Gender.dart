@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rexora1/screens/gift_policy.dart';
 
 class Gender extends StatefulWidget {
   const Gender({Key? key}) : super(key: key);
@@ -84,7 +85,7 @@ class _GenderState extends State<Gender> {
                   child: RaisedButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Gender()));
+                          MaterialPageRoute(builder: (context) => const Gift()));
                     },
 
 
