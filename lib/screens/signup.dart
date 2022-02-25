@@ -44,8 +44,19 @@ class SignUp extends StatelessWidget {
         fontWeight: FontWeight.w400
           ),),
     ),
+Padding(padding: EdgeInsets.all(15.0),
 
-Padding(padding: EdgeInsets.fromLTRB(30, 90, 30, 20),
+child:  Align(
+    alignment: Alignment.topCenter,
+    child: Text("Meet | Mingle | Match ",
+      style:  GoogleFonts.montserrat(color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.w200
+      ),),
+  ),
+),
+
+Padding(padding: EdgeInsets.fromLTRB(30, 40, 30, 20),
 
 child: ElevatedButton.icon(
 

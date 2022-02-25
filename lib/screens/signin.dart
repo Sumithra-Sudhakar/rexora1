@@ -135,25 +135,28 @@ class SignIn extends StatelessWidget {
                       ),),
 
 
-                ElevatedButton.icon(
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
+                  child: ElevatedButton.icon(
 
-                  icon: Icon(Icons.login, size: 24,color: Color(0xffffffff),),
-                  label: Text("Sign in", style: GoogleFonts.montserrat(
-                      color: Color(0xffffffffff),
-                      fontSize: 16
+                    icon: Icon(Icons.login, size: 24,color: Color(0xffffffff),),
+                    label: Text("Sign in", style: GoogleFonts.montserrat(
+                        color: Color(0xffffffffff),
+                        fontSize: 16
 
-                  ),),
-                  onPressed: (){},
+                    ),),
+                    onPressed: (){},
 
-                  style: ElevatedButton.styleFrom(
-                      elevation: 2,
-                      padding: EdgeInsets.all( 10.0),
-                      primary: Color(0xff424894),
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)
-                      )
+                    style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        padding: EdgeInsets.all( 10.0),
+                        primary: Color(0xff424894),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2.0)
+                        )
+                    ),
+
                   ),
-
                 ),
 
 

@@ -21,7 +21,7 @@ class _PhoneState extends State<Phone> {
     return  Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF4A5BB6),
-        title: Text("Enter your Phone number"),
+
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -33,6 +33,17 @@ class _PhoneState extends State<Phone> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  child: Text("Phone number pls..", style:  GoogleFonts.montserrat(color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.w400)),
+                ),
+              ),
+            ),
 
             Expanded(
 
@@ -45,6 +56,7 @@ class _PhoneState extends State<Phone> {
               child: Padding(padding: EdgeInsets.fromLTRB(15, 40, 15, 15),
                 child: ListView(
                     children: [TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: _phoneNumberController,
                       style: GoogleFonts.montserrat(color: Colors.white),
                       decoration: InputDecoration(
@@ -64,8 +76,9 @@ class _PhoneState extends State<Phone> {
                       ),
                     ),
                       Padding(
-                        padding: const EdgeInsets.all(15.0),
+                        padding: const EdgeInsets.fromLTRB(5, 20, 5, 20),
                         child: TextFormField(
+                          obscureText: true,
                           controller: _passwordController,
 
                           style: GoogleFonts.montserrat(color: Colors.white),

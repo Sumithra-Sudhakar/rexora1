@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:rexora1/screens/birthday.dart';
+import 'package:rexora1/screens/signin.dart';
 
 import 'home.dart';
 
@@ -63,7 +64,9 @@ class _OTPState extends State<OTP> {
   Widget build(BuildContext context) {
     _generateOTP();
     return Scaffold(
-      appBar: AppBar(title:Text("Enter the otp for verification")),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF4A5BB6),
+      ),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -94,28 +97,45 @@ class _OTPState extends State<OTP> {
             //
             //   // end onSubmit
             // ),
-            TextFormField(
-                controller: _otpController,
-                style: GoogleFonts.montserrat(color:Colors.white),
-                decoration: InputDecoration(
-                  label: Text(
-                    'OTP',
-                    style: GoogleFonts.raleway(
-                        color: Colors.white, fontSize: 12),
-                  ),
-                  filled: true,
-                  hintText: 'Please enter your OTP',
-                  hintStyle: GoogleFonts.poppins(
-                      color: Colors.grey.withOpacity(0.7)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(5)),
-                  fillColor: Color(0xff424894),
-                //  focusColor: colors.textBoxFill,
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(5)),
-                )),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: TextFormField(
+                  controller: _otpController,
+                  style: GoogleFonts.montserrat(color:Colors.white),
+                  decoration: InputDecoration(
+                    label: Text(
+                      'OTP',
+                      style: GoogleFonts.raleway(
+                          color: Colors.white, fontSize: 12),
+                    ),
+                    filled: true,
+                    hintText: 'Please enter your OTP',
+                    hintStyle: GoogleFonts.poppins(
+                        color: Colors.grey.withOpacity(0.7)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(5)),
+                    fillColor: Color(0xff424894),
+                  //  focusColor: colors.textBoxFill,
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(5)),
+                  )),
+            ),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: TextButton(
+                onPressed: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const SignIn()));
+                },
+                child: Text("Resend OTP ", style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  color: Colors.white,
+
+                ),),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: ElevatedButton(
@@ -141,32 +161,32 @@ class _OTPState extends State<OTP> {
 
               ),
             ),
-
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: ElevatedButton(
-
-
-                child: Text("Generate", style: GoogleFonts.montserrat(
-                    color: Color(0xff171B72),
-                    fontSize: 16
-
-                ),),
-                onPressed: () {
-                  print(widget.phoneNumber);
-                  _generateOTP();
-                },
-                style: ElevatedButton.styleFrom(
-                    elevation: 2,
-                    padding: EdgeInsets.all( 10.0),
-                    primary: Colors.white,
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(2.0)
-                    )
-                ),
-
-              ),
-            ),
+            //
+            // Padding(
+            //   padding: const EdgeInsets.all(30.0),
+            //   child: ElevatedButton(
+            //
+            //
+            //     child: Text("Generate", style: GoogleFonts.montserrat(
+            //         color: Color(0xff171B72),
+            //         fontSize: 16
+            //
+            //     ),),
+            //     onPressed: () {
+            //       print(widget.phoneNumber);
+            //       _generateOTP();
+            //     },
+            //     style: ElevatedButton.styleFrom(
+            //         elevation: 2,
+            //         padding: EdgeInsets.all( 10.0),
+            //         primary: Colors.white,
+            //         shape: new RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(2.0)
+            //         )
+            //     ),
+            //
+            //   ),
+            // ),
           ],
         ),
       ),

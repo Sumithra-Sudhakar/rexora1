@@ -9,6 +9,8 @@ class Gender extends StatefulWidget {
 }
 
 class _GenderState extends State<Gender> {
+  String? value = 'Choose your pronouns';
+  final items = ['Choose your pronouns', 'He/Him', 'She/Her', 'They/Them','Prefer Not to mention'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +41,64 @@ class _GenderState extends State<Gender> {
               child: Image.asset("assets/gender.png"),
             ),
           ),
-        )
+        ),
+        Expanded(flex:2,
+            child: ListView(
+
+              children: [
+
+                Padding(padding: EdgeInsets.fromLTRB(30, 40, 30, 30),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text("Let us know your pronoun",
+                      style:  GoogleFonts.montserrat(color: Colors.white,
+                          fontSize: 23,
+                          fontWeight: FontWeight.w400
+                      ),),
+                  ),),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 4),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+
+                    ),
+                    child:  DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: value,
+                        iconSize: 36,
+                        isExpanded: true,
+                        items: items.map(buildMenuItem).toList(),
+                        onChanged: (value) => setState(() {
+                          this.value= value;
+                        }),
+                      ),
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(28.0),
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => const Gender()));
+                    },
+
+
+                    //Refer step 3
+                    child: Text(
+                      'Continue',
+                      style:
+                      TextStyle(color: Color(0xFF18246D), fontWeight: FontWeight.bold),
+                    ),
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ))
       ],
 
     ),
@@ -47,3 +106,10 @@ class _GenderState extends State<Gender> {
     );
   }
 }
+DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+    value: item,
+    child: Text(item,
+        style:  GoogleFonts.poppins(
+            color: Colors.white.withOpacity(0.7))
+    )
+);

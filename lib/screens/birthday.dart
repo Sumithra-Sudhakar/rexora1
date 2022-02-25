@@ -49,8 +49,9 @@ class _BirthdayState extends State<Birthday> {
           children: [
             Expanded(flex: 1
                 ,child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Image.asset("assets/birthday.png"),
+                  padding: const EdgeInsets.all(30.0),
+                  child: Image.asset("assets/birthday.png", width: 400,
+                   ),
                 )),
            Expanded(
                flex: 2,
@@ -70,12 +71,15 @@ class _BirthdayState extends State<Birthday> {
                  alignment: Alignment.center,
                  child: Text(
                    "${selectedDate.toLocal()}".split(' ')[0],
-                   style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.white),
+                   style:   GoogleFonts.montserrat(color: Colors.white,
+                     fontSize: 30,
+                     fontWeight: FontWeight.bold
+                 )
                  ),
                ),
 
                Padding(
-                 padding: const EdgeInsets.all(18.0),
+                 padding: const EdgeInsets.fromLTRB(18, 70, 18, 18),
                  child: RaisedButton(
                    onPressed: () => _selectDate(context), // Refer step 3
                    child: Text(
